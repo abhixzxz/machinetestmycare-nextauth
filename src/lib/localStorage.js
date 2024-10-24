@@ -1,4 +1,3 @@
-// lib/localStorage.js
 export const storage = {
   USERS_KEY: "registered_users",
   CURRENT_USER_KEY: "current_user",

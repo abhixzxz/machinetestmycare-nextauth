@@ -1,4 +1,3 @@
-// RegistrationTimeline.js
 import {
   LineChart,
   Line,

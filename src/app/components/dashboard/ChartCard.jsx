@@ -1,4 +1,3 @@
-// ChartCard.js
 import { itemVariants } from "@/app/animations";
 import { motion } from "framer-motion";
 import { ResponsiveContainer } from "recharts";

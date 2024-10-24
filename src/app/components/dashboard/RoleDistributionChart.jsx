@@ -1,4 +1,3 @@
-// RoleDistributionChart.js
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import { ChartCard } from "./ChartCard";
 import { theme } from "@/app/theme";

@@ -1,4 +1,3 @@
-// validations/registerSchema.js
 export const registerValidation = {
   firstName: {
     required: "First name is required",
