@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Authentication App
 
-## Getting Started
+A Next.js 14 application with authentication using local storage, protected routes, and role-based access control.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- User registration and login
+- Admin dashboard
+- Protected routes
+- Role-based access control
+- Responsive design with Tailwind CSS
+- Local storage persistence
+
+## Setup Instructions
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd nextjs-auth-app
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Default Admin Credentials
+- Username: admin
+- Password: admin
+
+## Project Structure
+
+```
+├── app/                  # Next.js app directory
+├── components/           # Reusable React components
+├── contexts/            # React context providers
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility functions
+└── middleware.js        # Next.js middleware for route protection
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Built With
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Next.js 14
+- React
+- Tailwind CSS
+- Local Storage
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Now you have a complete Next.js authentication application with:
+- User registration and login
+- Admin dashboard with user list
+- Protected routes
+- Role-based access control
+- Local storage persistence
+- Responsive design
+- Loading states and error handling
+- Clean project structure
+- Code splitting and lazy loading
+- Reusable components
+- Clear documentation
 
-## Learn More
+To use this application:
 
-To learn more about Next.js, take a look at the following resources:
+1. Create a new Next.js project:
+```bash
+npx create-next-app@latest
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Install required dependencies:
+```bash
+npm install @headlessui/react @heroicons/react
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Copy all the files into their respective directories
 
-## Deploy on Vercel
+4. Run the development server:
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The application will be available at http://localhost:3000. You can login as admin using:
+- Username: admin
+- Password: admin
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Or register a new user account to test the user dashboard.
+
+Let me know if you need any clarification or have questions about specific parts of the implementation!
