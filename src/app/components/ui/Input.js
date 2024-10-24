@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 const Input = React.forwardRef(
   (
@@ -11,13 +12,13 @@ const Input = React.forwardRef(
       error,
       disabled,
       required,
-      icon: Icon,
-      onIconClick,
       className = "",
       ...props
     },
     ref
   ) => {
+    const [showPassword, setShowPassword] = useState(false);
+
     const baseInputStyles =
       "flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm " +
       "focus:outline-none focus:ring-2 focus:ring-offset-2 " +
@@ -26,9 +27,13 @@ const Input = React.forwardRef(
         ? "border-red-500 focus:ring-red-500"
         : "border-gray-200 focus:ring-blue-500") +
       " " +
-      (Icon ? "pr-10" : "") +
+      (type === "password" ? "pr-10" : "") +
       " " +
       className;
+
+    const handleTogglePassword = () => {
+      setShowPassword(!showPassword);
+    };
 
     return (
       <div className="relative w-full">
@@ -46,7 +51,9 @@ const Input = React.forwardRef(
             ref={ref}
             id={name}
             name={name}
-            type={type}
+            type={
+              type === "password" ? (showPassword ? "text" : "password") : type
+            }
             value={value}
             onChange={onChange}
             disabled={disabled}
@@ -54,10 +61,10 @@ const Input = React.forwardRef(
             className={baseInputStyles}
             {...props}
           />
-          {Icon && (
+          {type === "password" && (
             <button
               type="button"
-              onClick={onIconClick}
+              onClick={handleTogglePassword}
               className={
                 "absolute right-2.5 top-1/2 -translate-y-1/2 " +
                 "text-gray-500 hover:text-gray-700 focus:outline-none " +
@@ -65,8 +72,13 @@ const Input = React.forwardRef(
                 (disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer")
               }
               disabled={disabled}
+              tabIndex={-1}
             >
-              <Icon className="h-5 w-5" />
+              {showPassword ? (
+                <EyeOffIcon className="h-4 w-4" />
+              ) : (
+                <EyeIcon className="h-4 w-4" />
+              )}
             </button>
           )}
         </div>

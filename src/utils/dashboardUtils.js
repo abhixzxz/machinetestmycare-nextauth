@@ -26,11 +26,7 @@ export const prepareChartData = {
       .sort((a, b) => new Date(a.date) - new Date(b.date));
   },
 
-  getNewUsersCount: (users, days = 7) => {
-    return users.filter(
-      (u) =>
-        new Date(u.registeredAt) >
-        new Date(Date.now() - days * 24 * 60 * 60 * 1000)
-    ).length;
+  getNewUsersCount: (users) => {
+    return users.length; // Simply return total users count
   },
 };

@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export function ErrorMessage({ message }) {
   return (
     <div className="bg-red-50 p-4 rounded-md">
@@ -26,11 +28,12 @@ export function ErrorMessage({ message }) {
 
 export function ErrorMessageDashboard({ message }) {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="bg-red-50 rounded-lg p-4">
-        <p className="text-red-700">{message}</p>
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="flex items-center justify-center min-h-screen"
+    >
+      <div className="text-center text-red-500">{message}</div>
+    </motion.div>
   );
 }
-

@@ -1,5 +1,5 @@
+// contexts/AuthContext.js
 "use client";
-
 import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { storage } from "@/lib/localStorage";
@@ -14,7 +14,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     console.log("[AuthProvider] Initializing...");
     storage.initializeStorage();
-
     try {
       const storedUser = storage.getCurrentUser();
       console.log("[AuthProvider] Stored user:", storedUser);
@@ -28,7 +27,6 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  // Add event listener for storage changes
   useEffect(() => {
     const handleStorageChange = (e) => {
       if (e.key === storage.CURRENT_USER_KEY) {
@@ -36,7 +34,6 @@ export function AuthProvider({ children }) {
         setUser(newUser);
       }
     };
-
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
@@ -46,21 +43,18 @@ export function AuthProvider({ children }) {
     try {
       const authenticatedUser = storage.validateUser(username, password);
       console.log("[AuthProvider] Validation result:", authenticatedUser);
-
       if (authenticatedUser) {
         localStorage.setItem(
           storage.CURRENT_USER_KEY,
           JSON.stringify(authenticatedUser)
         );
         setUser(authenticatedUser);
-
         const redirectPath =
           authenticatedUser.role === "admin" ? "/admin" : "/dashboard";
         console.log("[AuthProvider] Redirecting to:", redirectPath);
         await router.push(redirectPath);
         return true;
       }
-
       console.log("[AuthProvider] Login failed: Invalid credentials");
       return false;
     } catch (error) {
@@ -69,17 +63,16 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const register = async (username, password) => {
+  const register = async (username, password, firstName, lastName) => {
     console.log("[AuthProvider] Registration attempt:", username);
     try {
-      const newUser = storage.saveUser({ username, password });
+      const newUser = storage.saveUser({
+        username,
+        password,
+        firstName,
+        lastName,
+      });
       console.log("[AuthProvider] User saved successfully:", newUser);
-
-      localStorage.setItem(storage.CURRENT_USER_KEY, JSON.stringify(newUser));
-      setUser(newUser);
-
-      console.log("[AuthProvider] Redirecting to dashboard");
-      await router.push("/dashboard");
       return true;
     } catch (error) {
       console.error("[AuthProvider] Registration error:", error);
@@ -96,7 +89,15 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        register,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

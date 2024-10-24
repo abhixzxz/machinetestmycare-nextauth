@@ -5,13 +5,14 @@ export const storage = {
 
   initializeStorage: () => {
     if (typeof window === "undefined") return;
-
     // Initialize admin user if not exists
     const users = storage.getUsers();
     if (!users.some((user) => user.username === "admin")) {
       const adminUser = {
         username: "admin",
         password: "admin",
+        firstName: "Admin",
+        lastName: "User",
         role: "admin",
         createdAt: new Date().toISOString(),
       };
@@ -45,7 +46,6 @@ export const storage = {
   saveUser: (user) => {
     console.log("[Storage] Attempting to save user:", user);
     const users = storage.getUsers();
-
     if (users.find((u) => u.username === user.username)) {
       console.error("[Storage] Username already exists");
       throw new Error("Username already exists");
@@ -66,18 +66,21 @@ export const storage = {
 
   validateUser: (username, password) => {
     console.log("[Storage] Validating user:", username);
-
     // Special case for admin
     if (username === "admin" && password === "admin") {
       console.log("[Storage] Admin login successful");
-      return { username, role: "admin" };
+      return {
+        username,
+        firstName: "Admin",
+        lastName: "User",
+        role: "admin",
+      };
     }
 
     const users = storage.getUsers();
     const user = users.find(
       (u) => u.username === username && u.password === password
     );
-
     console.log("[Storage] Validation result:", user);
     return user;
   },

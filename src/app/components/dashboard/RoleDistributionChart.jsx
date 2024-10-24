@@ -1,9 +1,9 @@
+// RoleDistributionChart.js
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import { ChartCard } from "./ChartCard";
+import { theme } from "@/app/theme";
 
 export function RoleDistributionChart({ data }) {
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-
   return (
     <ChartCard
       title="User Role Distribution"
@@ -20,7 +20,10 @@ export function RoleDistributionChart({ data }) {
           dataKey="value"
         >
           {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            <Cell
+              key={`cell-${index}`}
+              fill={theme.charts.colors[index % theme.charts.colors.length]}
+            />
           ))}
         </Pie>
         <Tooltip />
