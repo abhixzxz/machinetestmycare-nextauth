@@ -4,47 +4,7 @@ A Next.js 14 application with authentication using local storage, protected rout
 
 ## Features
 
-- User registration and login
-- Admin dashboard
-- Protected routes
-- Role-based access control
-- Responsive design with Tailwind CSS
-- Local storage persistence
-
-## Setup Instructions
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd nextjs-auth-app
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
-
-## Default Admin Credentials
-- Username: admin
-- Password: admin
-
-## Project Structure
-
-```
-├── app/                  # Next.js app directory
-├── components/           # Reusable React components
-├── contexts/            # React context providers
-├── hooks/               # Custom React hooks
-├── lib/                 # Utility functions
-└── middleware.js        # Next.js middleware for route protection
-```
+npm run dev
 
 ## Built With
 
